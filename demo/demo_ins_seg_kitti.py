@@ -52,13 +52,13 @@ def get_parser():
     parser.add_argument("--video-input", help="Path to video file.")
     parser.add_argument(
         "--input",
-        default='/media/yuliangguo/data_ssd_4tb/Datasets/nuscenes/v1.0-trainval/samples/',
+        default='/media/yuliangguo/data_ssd_4tb/Datasets/kitti/training/',
         help="A list of space separated input images; "
         "or a single glob pattern such as 'directory/*.jpg'",
     )
     parser.add_argument(
         "--output",
-        default='/media/yuliangguo/data_ssd_4tb/Datasets/nuscenes/v1.0-trainval/pred_instance/',
+        default='/media/yuliangguo/data_ssd_4tb/Datasets/kitti/training/pred_instance/',
         help="A file or directory to save output visualizations. "
         "If not given, will show output in an OpenCV window.",
     )
@@ -77,7 +77,7 @@ def get_parser():
     )
     parser.add_argument('--camera-id',
                         help='the camera id from nuscenes',
-                        default='CAM_FRONT',
+                        default='image_2',
                         type=str)
     parser.add_argument('--save-vis',
                         help='output image visualization for debugging',
@@ -127,7 +127,7 @@ if __name__ == "__main__":
     demo = VisualizationDemo(cfg)
 
     if args.input:
-        input_files = glob.glob(args.input + '/*.jpg')
+        input_files = glob.glob(args.input + '/*.png')
         for path in tqdm.tqdm(input_files, disable=not args.output):
             # use PIL, to be consistent with evaluation
             img = read_image(path, format="BGR")
