@@ -52,13 +52,13 @@ def get_parser():
     parser.add_argument("--video-input", help="Path to video file.")
     parser.add_argument(
         "--input",
-        default='/media/yuliangguo/data_ssd_4tb/Datasets/kitti/training/',
+        default='/mnt/LinuxDataFast/Datasets/KITTI/training/image_2',
         help="A list of space separated input images; "
         "or a single glob pattern such as 'directory/*.jpg'",
     )
     parser.add_argument(
         "--output",
-        default='/media/yuliangguo/data_ssd_4tb/Datasets/kitti/training/pred_instance/',
+        default='/mnt/LinuxDataFast/Datasets/KITTI/training/pred_instance/',
         help="A file or directory to save output visualizations. "
         "If not given, will show output in an OpenCV window.",
     )
