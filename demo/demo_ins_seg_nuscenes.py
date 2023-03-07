@@ -127,7 +127,7 @@ if __name__ == "__main__":
     demo = VisualizationDemo(cfg)
 
     if args.input:
-        input_files = glob.glob(args.input + '/*.jpg')
+        input_files = sorted(glob.glob(args.input + '/*.jpg'))
         for path in tqdm.tqdm(input_files, disable=not args.output):
             # use PIL, to be consistent with evaluation
             img = read_image(path, format="BGR")

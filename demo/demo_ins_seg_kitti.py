@@ -75,10 +75,10 @@ def get_parser():
         default=['MODEL.WEIGHTS', 'detectron2://COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl'],
         nargs=argparse.REMAINDER,
     )
-    parser.add_argument('--camera-id',
-                        help='the camera id from nuscenes',
-                        default='image_2',
-                        type=str)
+    # parser.add_argument('--camera-id',
+    #                     help='the camera id from nuscenes',
+    #                     default='image_2',
+    #                     type=str)
     parser.add_argument('--save-vis',
                         help='output image visualization for debugging',
                         action='store_true')
@@ -110,8 +110,8 @@ if __name__ == "__main__":
     logger = setup_logger()
     logger.info("Arguments: " + str(args))
 
-    args.input = os.path.join(args.input, args.camera_id)
-    args.output = os.path.join(args.output, args.camera_id)
+    # args.input = os.path.join(args.input, args.camera_id)
+    # args.output = os.path.join(args.output, args.camera_id)
 
     if not os.path.exists(args.output):
         PathManager().mkdirs(args.output)
@@ -127,7 +127,7 @@ if __name__ == "__main__":
     demo = VisualizationDemo(cfg)
 
     if args.input:
-        input_files = glob.glob(args.input + '/*.png')
+        input_files = sorted(glob.glob(args.input + '/*.png'))
         for path in tqdm.tqdm(input_files, disable=not args.output):
             # use PIL, to be consistent with evaluation
             img = read_image(path, format="BGR")
